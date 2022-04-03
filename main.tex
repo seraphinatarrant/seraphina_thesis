@@ -1,0 +1,134 @@
+%thesis.tex 
+%Model LaTeX file for Ph.D. thesis at the 
+%School of Mathematics, University of Edinburgh
+
+\title{Fairness in Multilingual NLP}
+\author{Seraphina Goldfarb-Tarrant}
+\date{2023}
+
+\documentclass[phd,ilcc,oneside,leftchapter,parskip]{infthesis}
+
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[english]{babel}
+
+\usepackage{natbib}
+
+% \usepackage{biblatex}
+% \addbibresource{biblatex_bib.bib}
+
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{times}
+
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{subcaption}
+\usepackage{mwe}
+\usepackage{booktabs} % Top and bottom rules for tables
+\usepackage{svrsymbols}
+
+\usepackage{tikz-dependency}
+\usepackage{tikz-qtree}
+\usepackage{paralist}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+\usetikzlibrary{matrix}
+\usepackage{etoolbox}
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{csquotes}
+\usepackage{verbatim}
+% \usepackage{todonotes}
+
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{0.7\textwidth} 
+
+\usepackage[final]{pdfpages}
+
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\urlstyle{rm}
+\definecolor{revcolor}{rgb}{0.81, 0.09, 0.13}
+\definecolor{darkblue}{rgb}{0.2, 0.2, 0.6}
+
+\hypersetup{
+    colorlinks,
+    citecolor=darkblue,
+    filecolor=black,
+    linkcolor=darkblue,
+    urlcolor=darkblue
+}
+
+% \usepackage{lsubfiles}
+
+\newcommand{\E}{\mathbb{E}}
+
+
+\abstract{TLDR}
+
+\begin{document}
+
+%% First, the preliminary pages
+\begin{preliminary}
+
+%% This creates the title page
+\maketitle
+
+
+\begin{laysummary}
+Laysummary
+\end{laysummary}
+
+% Acknowledgements
+\begin{acknowledgements}
+ACK
+
+
+\end{acknowledgements}
+
+
+%% Next we need to have the declaration.
+\standarddeclaration
+
+\dedication{}
+
+%% Finally, a dedication (this is optional -- uncomment the following line if
+%% you want one).
+% \dedication{To my mum
+%% Create the table of contents
+\tableofcontents
+
+%% If you want a list of figures or tables, uncomment the appropriate line(s)
+% \listoffigures
+% \listoftables
+
+\end{preliminary}
+
+% \include{introduction/chapter}
+
+% \include{background_interpretability/chapter}
+
+% \include{background_learning/chapter}
+
+
+% \include{svcca/chapter}
+
+% \include{interdependence/chapter}
+
+% \include{sparsity/chapter}
+
+% \include{conclusion/chapter}
+
+\bibliographystyle{apalike}
+\bibliography{bibl}
+
+\appendix
+
+\end{document}
