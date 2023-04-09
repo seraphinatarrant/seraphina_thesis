@@ -2,7 +2,7 @@
 %Model LaTeX file for Ph.D. thesis at the 
 %School of Mathematics, University of Edinburgh
 
-\title{Ensuring Fairness in Transfer Learning for NLP}
+\title{Fairness in Transfer Learning for Natural Language Processing}
 \author{Seraphina Goldfarb-Tarrant}
 \date{2023}
 
@@ -58,6 +58,10 @@
 \definecolor{revcolor}{rgb}{0.81, 0.09, 0.13}
 \definecolor{darkblue}{rgb}{0.2, 0.2, 0.6}
 
+
+\usepackage[left, mathlines]{lineno}
+\renewcommand\linenumberfont{\normalfont\bfseries\small\color{lightgray}}
+
 \hypersetup{
     colorlinks,
     citecolor=darkblue,
@@ -68,10 +72,18 @@
 
 % \usepackage{lsubfiles}
 
+\newcommand{\sgtcomment}[1]{\textcolor{blue}{[ST: #1]}}
+
 \newcommand{\E}{\mathbb{E}}
 
 
-\abstract{TLDR}
+\abstract{Natural Language Processing (NLP) systems have come to permeate so many areas of daily life that it is difficult to live a day without having one or many experiences mediated by an NLP system. These systems bring with them many promises -- more accessible information in more languages, real-time content moderation, more data-driven decision making, intuitive access to information via Q&A and chat interfaces.
+%and scale and efficiency at low costs. 
+But there is a dark side to these promises, for the past decade of research has shown that NLP systems can contain social biases and deploying them can incur serious social costs. Each of these promises has been found to have unintended consequences: racially charged errors and rampant gender stereotyping in language translation, censorship of minority voices and dialects, Human Resource systems that discriminate based on demographic data, a proliferation of toxic generated text and misinformation, and many subtler issues. 
+
+Yet despite these consequences, and the proliferation of bias research attempting to correct them, NLP systems have not improved very much. There are a few reasons for this. First, measuring bias is difficult; there are not standardised methods of measurement, and much research relies on one-off methods that are often insufficiently careful and thoroughly tested. Thus many works have contradictory results that cannot be reconciled, because of minor differences or assumptions in their metrics. Without thorough testing, these metrics can even mislead and give the illusion of progress. Second, much research adopts an overly simplistic view of the causes and mediators of bias in a system. NLP systems have multiple components and stages of training, and many works test fairness at only one stage. They do not study how different parts of the system interact, and how fairness changes during this process. So it is unclear whether these isolated results will hold in the full complex system. Here, we address both of these shortcomings. We conduct a detailed analysis of fairness metrics applied to upstream language models (models that will be used in a downstream task in transfer learning). We find that a) the most commonly used upstream fairness metric is not predictive of downstream fairness, such that it should not be used but that b) information theoretic probing is a good alternative to these existing fairness metrics, as we find it is both predictive of downstream bias and robust to different modelling choices.   %illuminating the inconsistencies in a number of common metrics, and making recommendations to improve their utility. 
+We then use our findings to track how unfairness, having entered a system, persists and travels throughout it. We track how fairness issues travel between tasks (from language modelling to classification) in monolingual transfer learning, and between languages, in multilingual transfer learning. We find that multilingual transfer learning often exacerbates fairness problems and should be used with care, whereas monolingual transfer learning generally improves fairness. Finally, we track how fairness travels between source documents and retrieved answers to questions, in fact-based generative systems. Here we find that, though retrieval systems strongly represent demographic data such as gender, bias in retrieval question answering benchmarks does not come from the model representations, but from the queries or the corpora. We reach all of our findings only by looking at the entire transfer learning system as a whole, and we hope that this encourages other researchers to do the same. We hope that our results can guide future fairness research to be more consistent between works, better predictive of real world fairness outcomes, and better able to prevent unfairness from propagating between different parts of a system. 
+}
 
 \begin{document}
 
@@ -110,24 +122,34 @@ ACK
 % \listoftables
 
 \end{preliminary}
+%\linenumbers
 
 \include{introduction/chapter}
 
+\include{background/chapter}
+
 \include{measurement/chapter}
+
+% Background for this probably talk about predictive vs. descriptive measures
 \include{measurement/intrinsic_bias_metrics/chapter}
+\includepdf[pages=-]{pdfs/2021.acl-long.150.pdf}
 
 \include{measurement/gender_bias_probing/chapter}
+\includepdf[pages=-]{pdfs/2022.naacl-main.188.pdf}
+
 
 \include{crosslingual/chapter}
 \include{crosslingual/multi_sentiment_analysis/chapter}
+\includepdf[pages=-]{pdfs/sentiment_transfer_seraphina.pdf}
 
-\include{crosslingual/swahili_gender_representation/chapter}
+%\include{crosslingual/swahili_gender_representation/chapter}
 
 \include{intervention_generation/chapter}
-% \include{conclusion/chapter}
+
+\include{conclusion/chapter}
 
 \bibliographystyle{apalike}
-\bibliography{bibl}
+\bibliography{anthology,bibl}
 
 \appendix
 
