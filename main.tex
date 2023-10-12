@@ -93,7 +93,6 @@ We then use our findings to track how unfairness, having entered a system, persi
 %% This creates the title page
 \maketitle
 
-
 \begin{laysummary}
 Laysummary
 \end{laysummary}
@@ -109,7 +108,7 @@ ACK
 %% Next we need to have the declaration.
 \standarddeclaration
 
-\dedication{}
+\dedication{stuff}
 
 %% Finally, a dedication (this is optional -- uncomment the following line if
 %% you want one).
@@ -140,11 +139,15 @@ ACK
 
 \include{crosslingual/chapter}
 \include{crosslingual/multi_sentiment_analysis/chapter}
-\includepdf[pages=-]{pdfs/sentiment_transfer_seraphina.pdf}
+\includepdf[pages=-]{pdfs/bias_beyond_english_final.pdf}
+\include{crosslingual/multi_sentiment_analysis_part2/chapter}
+\includepdf[pages=-]{pdfs/cross_lingual_transfer_final.pdf}
 
 %\include{crosslingual/swahili_gender_representation/chapter}
 
 \include{intervention_generation/chapter}
+\include{intervention_generation/retrieval/chapter}
+\includepdf[pages=-]{pdfs/probing_multi_contrievers_ICLR.pdf}
 
 \include{conclusion/chapter}
 
