@@ -1,1 +1,63 @@
 \chapter{Conclusion}\label{chapter:conclusion}
+
+%“For every subtle and complicated question, there is a perfectly simple and straightforward answer, which is wrong. —H.L. Mencken”
+
+This body of work has focused on \textbf{measurement} of fairness, and on then on \textbf{analysis} of different models and phenomena with respect to different fairness metrics. This was a deliberate choice of focus, to counteract the poverty of understanding in the field as to the mechanisms causing and amplifying fairness problems in a multi-part system. This poverty was marked at the time of beginning this work, but does still persist: both fairness research and interpretability and analysis work have grown, but so has the field, and the scale and speed of productionisation still far outstrips understanding. 
+
+In Part~\ref{part:measurement} I examined the dominant method of bias evaluation in language models, based on embedding geometry and cosine similarity, found it to have poor predictive validity, and advocated for measuring bias downstream. 
+I then found an alternative upstream measure. I found that information theoretic measures of extractability of demographics from representations were good predictors of bias, though only of \textit{potential} for social bias downstream, a potential that may or may not be realised depending on classifier training. 
+
+In Part~\ref{part:crosslingual}, I examined monolingual and crosslingual transfer in the setting of sentiment classification, in five languages, and found that both settings changed fairness outcomes, which wasn't previously established. Monolinual transfer generally improved fairness despite the introduction of new awful data from the depths of Common Crawl in pretraining. I attribute this to increased stability in model decisions from the additional data (where stability is defined as not just less errors under the counterfactual, but smaller magnitude ones). Multilingual transfer, however, often worsened fairness outcomes, despite using more data than monolingual transfer (though admittedly less parameters per language, which may be part of that story, since multilingual transfer models are not more stable than monolingual transfer models.
+
+In Part~\ref{part:generation}, I examined dense retrieval models, using the tools and research questions I'd accumulated in Parts~\ref{part:measurement} and \ref{part:crosslingual}. I found that random initialisation and random data shuffle play a large role than previously thought, challenging the standard practice of using only one random seed for research, which was common and is now ubiquitous in the age of LLMs, where training one model takes over 400,000 kWh \citep{luccioni_bloom_carbon}. I also found a case where information theoretic probing was \textit{not} predictive of gender bias in retrievers, because the bias was cause by other factors beyond the model representation itself. 
+
+The combined work in this thesis shows again and again how little it makes sense to make choices about fairness without understanding and simulating the entire system. 
+
+Each individual work raised as many questions as it answered, which have not been answered by other analytical work. These questions are significant in both size and importance and would be valuable extensions to the understanding of the field, even in the era of LLMs. For both works in Part~\ref{part:measurement} the question remains: what about generative models?  What is the relationship between upstream language model metrics and downstream bias in generation, as opposed to in classification? The objective is more similar, and Chapter~\ref{chapter:gender_bias_probing} showed that whether bias was realised was a property of both the language model and the classifier, so what if there's no classifier? 
+But to answer that question, there has to be a way to measure bias in generation at all, which the field has by no means settled on. \citet{vig_causal} consider social bias in generation to be the relative probability of different gendered pronouns along with stereotypical professions like \textit{doctor} and \textit{nurse}. But how would that be extended to different grammatical systems, like Turkish, which has no gendered pronouns? Or what about different demographic biases that aren't encoded the way gender is? Even with those worked out, this measure is so zoomed in that, while it matters, it's hard to see what scope of bias problems it can and cannot represent. \citep{sheng-etal-2019} use \textit{regard} of the demographic that a generation is about, which is generalisable as a notion, but not in practice when operationalising: they train one classifier, which is available in English only, for three binaries (male/female, white/black, and gay/straight) and has never been updated. \citet{BOLD} create a dataset where they use both of these notions, as well as sentiment and toxicity, which are both very common proxies, but come with their own issues. Plenty of harmful stereotypes carry positive sentiment [example] and lots of social bias doesn't manifest via differences in toxicity. 
+In classification, in Part~\ref{part:measurement}, I used observational studies to determine allocational bias by measuring whether the error rates across populations that differ with respect to a demographic variable were equal (male group vs. female group, etc). In Part~\ref{part:crosslingual} I used interventional studies that measured whether change in a demographic variable changed predictions, when the predictions should be equal. Both of these measurements require a notion of equality -- which is very easy with a discrete label space or ordinal values. The same type of study could be set up for generative models: instead of classifying resumes, a model could write summaries of resumes with a recommendation to proceed or not, which is then read by a human. We can make the same assertion, that if we change the gender or race on the resume, the summary should not materially change. But what is a material change? In principle, it is a change that is large enough to cause the summary to be less accurate. Or to be equivalently accurate but to affect a human's opinion positively or negatively. Probably we want to know both for different reasons. How do we measure this? That essential groundwork has to be done before we can begin to determine whether these metrics are predictable from upstream metrics.
+
+The second work in that section, \ref{chapter:gender_bias_probing}, raises the question: what about beyond gender? Other work in this thesis looks as bias beyond gender (\ref{chapter:intrinsic_bias_metrics}, \ref{chapter:multilingual_sentiment_analysis}, \ref{chapter:multilingual_sentiment_analysis_pt2} all include some notion of race or country of origin) but this one shows that information theoretic probing correlates with potential for bias for gender, but doesn't look at other datasets (partly because there are not very many suitable ones). But gender is encoded very differently in language than other demographic features, so it could reasonably have a different way it operates in model representations and social bias. In English, which weakly marks gender, and other languages with stronger gender agreement, gender is clearly important to represent for correct grammar and language reconstruction from a noising objective. But race and country of origin are not as strong signals: it is not easy to determine these save from specific words like names (and even then the signal is not perfect at all, unlike with pronouns). How does this difference in encoded information affect the relationship between language models and downstream bias?
+
+
+
+FURTHER QUESTIONS:
+Part 2
+
+In aggregate there is less bias, but what about an INDIVIDUAL bias? Can we track a specific negative stereotype in pretraining and see if it can affect decisions later?
+
+Extending to crosslingual - can we do this in multiple languages? When racial bias does increase with cross-lingual transfer, what reason is this for? Is it really compounding biases (sterotypes) or a generalisation error? (cf generalisation vs stereotyping)
+
+What is the role of uncertainty in the bias that we're measuring here?
+
+
+PART 3:
+wtf happened with seed 13
+what about nonlinear gender removal
+again, what about beyond gender?
+
+
+
+THEN:
+BRING in current discourse and also experience at Cohere
+
+- how my work relates to how people are thinking about everything
+- how my work at Cohere has incorporated my work and the difficulty there that I have in having proved upstream doesn work and then doing upstream but being the one who can do something still. 
+Talk about what has been important for me and what there is still left to do. 
+
+Have I covered important implications enough?
+
+
+NOTES:
+The role of fairness research is the understanding that industry doesn't have time to do but that can still have hope of being applied in practice of having bearing on a real world situation -- this is a characteristic of the field since it is necessarily grounded in real humans and their lives.
+
+
+%We are building out the picture of the full ecosystem of what can matter over the course of the thesis
+
+
+
+
+% WHAT else can I bring in about science about goodharts law about things I've learnt about doing this all in practice?
+
+
+%%% Outline what I want to cover in the discussion
