@@ -77,7 +77,7 @@
 \newcommand{\E}{\mathbb{E}}
 
 
-\abstract{Natural Language Processing (NLP) systems have come to permeate so many areas of daily life that it is difficult to live a day without having one or many experiences mediated by an NLP system. These systems bring with them many promises -- more accessible information in more languages, real-time content moderation, more data-driven decision making, intuitive access to information via QA and chat interfaces.
+\abstract{Natural Language Processing (NLP) systems have come to permeate so many areas of daily life that it is difficult to live a day without having one or many experiences mediated by an NLP system. These systems bring with them many promises: more accessible information in more languages, real-time content moderation, more data-driven decision making, intuitive access to information via Question Answering and chat interfaces.
 %and scale and efficiency at low costs. 
 But there is a dark side to these promises, for the past decade of research has shown that NLP systems can contain social biases and deploying them can incur serious social costs. Each of these promises has been found to have unintended consequences: racially charged errors and rampant gender stereotyping in language translation, censorship of minority voices and dialects, Human Resource systems that discriminate based on demographic data, a proliferation of toxic generated text and misinformation, and many subtler issues. 
 
@@ -106,7 +106,27 @@ ACK
 
 
 %% Next we need to have the declaration.
-\standarddeclaration
+%\standarddeclaration
+\begin{declaration}
+   I declare that this thesis was composed by myself,
+   that the work contained herein is my own 
+   except where explicitly stated otherwise in the text,
+   and that this work has not been submitted for any other degree or
+   professional qualification except as specified.
+
+   My specific contributions are as follows for each chapter:
+   
+   Chapter~\ref{chapter:intrinsic_bias_metrics}: I designed the research agenda: I envisioned the research question and wrote a research plan document with methods, goals, metrics, and a literature review. I recruited and supervised three MSc students who implemented pipelines for three different systems and did initial investigations into the correlation between intrinsic and extrinsic metrics for their MSc theses. I gathered these pipelines together, extended them, ran experiments, and wrote and presented the paper, with the help of Adam. 
+
+   Chapter~\ref{chapter:gender_bias_probing}: I was second author on this paper, assisting the first author Hadas Orgad who proposed this extension of the work in Chapter~\ref{chapter:intrinsic_bias_metrics}. I implemented some of the metrics on intrinsic analysis of language model representations, implemented the additional extrinsic fairness metrics (which are now open-sourced), and co-wrote the paper with Hadas Orgad and Yonatan Belinkov.
+
+   Chapters~\ref{chapter:multilingual_sentiment_analysis} and \ref{chapter:multilingual_sentiment_analysis_pt2}: I did this project almost entirely on my own save for the writing, which my supervisors Adam and Björn assisted with greatly. I designed the research question and outlined the project, developed and programmed the experiment framework, found training data, created evaluation data (with the help of native speakers of each language) and wrote up the results (with the help of my supervisors). I received regular weekly consultation from Diego Marcheggiani, Roi Blanco, and Lluis Marquez at Amazon Barcelona for the first of the two projects.
+
+   Chapter~\ref{chapter:contrievers}: I designed the research question in collaboration with Patrick Lewis. I made the research project plan, chose datasets and interpretability methods, wrote all pipeline code and ran all experiments, and finally wrote up the findings into a paper, with help from Pedro Rodriguez.
+
+   \par
+   \vspace{1in}\raggedleft({\em Seraphina Goldfarb-Tarrant})
+   \end{declaration}
 
 \dedication{stuff}
 
@@ -147,7 +167,7 @@ ACK
 
 \include{intervention_generation/chapter}
 \include{intervention_generation/retrieval/chapter}
-\includepdf[pages=-]{pdfs/probing_multi_contrievers_ICLR.pdf}
+\includepdf[pages=-]{pdfs/probing_multi_contrievers_ARR_deanon.pdf}
 
 \include{conclusion/chapter}
 

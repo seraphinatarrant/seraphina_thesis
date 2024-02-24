@@ -1,4 +1,4 @@
-\part{Fairness in Fact-Based Retrieval and Generation}
+\part{Fairness and Generalisation in Retrievers}
 \label{part:generation}
 
 %Maybe Finish  transition by consider adding label balance addendum and also random seed addendum and maybe also training dynamics addendum
@@ -7,7 +7,7 @@ In this section, we take everything we've learnt about analysing classification 
 %While this was the dominant transfer learning paradigm for the duration of this research, it notably neglects two entirely different type of systems that grew in prominence: generative systems, and retrieval systems (which are increasingly often combined).
 Retrieval systems for generation grew in prominence over the course of this research, and are now one of the primary paradigms of generative NLP. 
 
-A neural retrieval system is often called \textbf{dense retrieval} to contrast with sparse vectors from lexical word-counting based approaches \citep{BM25}. These systems start with a pre-trained language model as an initialisation -- just as in all the previous sections -- but then instead of fine-tuning that model with a classification layer, it is fine-tuned on data to optimise the quality of the representation for determining \textit{relevance} between a query and a document. If used in a generative system later, the top N retrieved document representations are context used to generate an answer to a query, out of the composition of both model parameters and document representations. 
+A neural retrieval system is often called \textbf{dense retrieval} to contrast with sparse vectors from lexical word-counting based approaches \citep{BM25}. These systems start with a pre-trained language model as an initialisation -- just as in all the previous sections -- but then instead of fine-tuning that model with a classification layer, it is fine-tuned on data to optimise the quality of the representation for determining \textit{relevance} between a query and a document. If used in a generative system later, the top N retrieved document representations are context used to generate an answer to a query, out of the composition of both model parameters and document representations \citep{lewis2020retrieval, atlas_jmlr}. 
 
 Retrieval is thus a very similar but also very different setup, and adds a new element to the previous factors that could affect fairness: the retrieval corpus itself. 
 
