@@ -1,7 +1,7 @@
 \part{Fairness and Generalisation in Retrievers}
 \label{part:generation}
 
-%Maybe Finish  transition by consider adding label balance addendum and also random seed addendum and maybe also training dynamics addendum
+
 In this section, we take everything we've learnt about analysing classification systems, and apply it to retrieval systems. 
 %Until now, all research in this thesis has been on classification systems, where pretrained embedding or a language model are then adapted into a downstream classification system. 
 %While this was the dominant transfer learning paradigm for the duration of this research, it notably neglects two entirely different type of systems that grew in prominence: generative systems, and retrieval systems (which are increasingly often combined).
@@ -18,14 +18,14 @@ In the following work, we analyse gender bias and the properties of dense retrie
 
 In this work, we answer a few separate questions:
 \begin{enumerate}
-    \item What impact does retriever training have on the demographic gender encoded in the representation, and how does this differ from a standard language model (which we analysed in \ref{chapter:gender_bias_probing})?
+    \item What impact does retriever training have on the demographic gender encoded in the retrieved document representation, and how does this differ from a standard language model (which we analysed in \ref{chapter:gender_bias_probing})?
     \item What impact does random seed have on our results?
     \item What is the cause of any observed gender bias?
 \end{enumerate}
 
-Many of these questions had very surprising results. The random seed experiments showed quite strange behaviour, and we dedicated more experiments and analysis to that than expected. We also found that, for the dataset we looked at, the gender bias was not attributable to the representations, such that in this case gender biases cannot be corrected by representations alone. 
+Many of these questions had very surprising results. The random seed experiments showed far more variability in performance than we expected to find from just varying random initialisation, and we dedicated more experiments and analysis to that than expected. We also found that, for the dataset we looked at, the gender bias was not attributable to the representations, but was instead caused by the corpus and the queries such that in this case gender biases cannot be corrected by representations alone. Instead, 
 
-So we leave this as an interesting final piece of work. In \ref{chapter:gender_bias_probing}, removing gender from language model representations \textit{did} correlate with downstream fairness, but in this work, we find a system where it does not. This expands our view, and shows the true complexity of the fairness space, and the reinforces the need to focus on a whole system not any single aspect of modelling. The first work in this thesis showed that a language model can't be measured in isolation from a downstream application. This work shows that in many now commonly used systems, a model even trained on an application cannot be considered in isolation from the data it is retrieving. It also shows that factors such as random seeds, which were not previously thought to matter at all for fairness, have a large effect. 
+So we leave this as an interesting final piece of work. In \ref{chapter:gender_bias_probing}, removing gender from language model representations \textit{did} correlate with downstream fairness, but in this work, we find a system where it does not. This expands our view, and shows the true complexity of the fairness space, and the reinforces the need to focus on a whole system not any single aspect of modelling. The first work in this thesis showed that a language model can't be measured in isolation from a downstream application. This work shows that in many now commonly used systems, a model even trained on an application cannot be considered in isolation from the data it is retrieving. It also shows that factors such as random seeds, which were not previously thought to matter at all for fairness before \citep{multiberts}, can drastically increase or decrease performance and bias in retrievers just as they were recently shown to do in encoder-language models (the subject of \citet{multiberts}, who studied BERT models). 
 
 
 
